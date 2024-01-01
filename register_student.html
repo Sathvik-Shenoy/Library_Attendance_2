@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Student Registration </title>
+    <link rel="stylesheet" href="register_style.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+      select{
+        height: 45px;
+            width: 300px;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+      }
+   </style>
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Student Registration Form</div>
+    <div class="content">
+      <form action="insert_student_details.php" method="POST">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" placeholder="Enter your name" name="name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your phone number" name="phone" required>
+          </div>
+          <div class="input-box">
+            <span class="details">College </span>
+            <input type="text" placeholder="Enter your college name" name="college" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Branch</span>
+            <select name="branch" required>
+              <option value="" disabled selected>Select your branch</option>
+              <option>Bio Technology</option>
+              <option>Civil Engineering</option>
+              <option>Computer Science & Business Systems</option>
+              <option>Computer Science & Engineering</option>
+              <option>Construction Technology & Management</option>
+              <option>Civil Engineering</option>
+              <option>Environmental Engineering</option>
+              <option>Industrial & Production Engineering</option>
+              <option>Information Science & Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Polymer Science & Technology</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Semester</span>
+            <input type="number" placeholder="Enter your semester" name="semester" required>
+          </div>
+          <div class="input-box">
+            <span class="details">College ID</span>
+            <input type="text" placeholder="Enter your College ID" name="college_id" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" placeholder="Enter your password" name="password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="text" placeholder="Confirm your password" name="passwd" required>
+          </div>
+        </div>
+        <div class="button">
+          <input onclick="Validate()" type="submit" value="Register" >
+        </div>
+        <a style = " white-space:nowrap;" href="first_choice_page.html"><p class="forgot-pass"> <- Back </p></a> 
+        <br> 
+        <a style = " white-space:nowrap;" href="index.html"><p class="forgot-pass"> Enter dashboard </p></a> 
+
+      </form>
+    </div>
+  </div>
+
+  <!-- <script src="sweetalert.min.js"></script>
+	 <script>
+		 function Validate() {
+			swal("Success", "You have successfuly registered !", "success");
+		 }
+	 </script> -->
+
+</body>
+</html>
