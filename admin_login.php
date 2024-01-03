@@ -79,8 +79,8 @@
                         showConfirmButton: false,
                         timer: 2300
                     }).then(() => {
-                            //window.location.href = "http://localhost/Library-Management-System/admin/node_modules/startbootstrap-sb-admin-2/index.php";
-                            window.location.href = "http://44.204.65.138//admin/node_modules/startbootstrap-sb-admin-2/index.php";
+                            window.location.href = "http://localhost/Library_Attendance_2/admin/node_modules/startbootstrap-sb-admin-2/index.php";
+                            //window.location.href = "http://44.204.65.138//admin/node_modules/startbootstrap-sb-admin-2/index.php";
                     })
                 </script>
                 </body>
