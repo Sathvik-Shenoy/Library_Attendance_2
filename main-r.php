@@ -22,25 +22,25 @@
     if ($lib_id != "") {
         //$result = mysqli_query($con,"SELECT * FROM `Library_card_index` WHERE `lib_id`=$lib_id");   
 	//$rows = mysqli_num_rows($result);
-	 $result = mysqli_query($con,"SELECT * FROM `Library_card_index` LEFT JOIN `Reference_section` ON `Library_card_index`.`lib_id`=`Reference_section`.`lib_id` WHERE `Reference_section`.`lib_id` IS NULL AND `Library_card_index`.`lib_id`=$lib_id");
+	 $result = mysqli_query($con,"SELECT * FROM `Library_card_index` LEFT JOIN `Reference_section` ON `Library_card_index`.`lib_id`=`Reference_section`.`lib_id` WHERE `Reference_section`.`lib_id` IS NULL AND `Library_card_index`.`lib_id`='$lib_id'");
         $rows1 = mysqli_num_rows($result);
         $result = mysqli_query($con,"SELECT * FROM `Library_card_index` INNER JOIN `Reference_section` ON `Library_card_index`.`lib_id`=`Reference_section`.`lib_id` WHERE `Reference_section`.`status`=1");
         $rows2 = mysqli_num_rows($result);
         
         if($rows1 == 1 || $rows2==0) {
-            $pass_verify = mysqli_query($con,"SELECT * FROM `Library_card_index` WHERE `lib_id`=$lib_id AND `password`='$password'"); 
+            $pass_verify = mysqli_query($con,"SELECT * FROM `Library_card_index` WHERE `lib_id`='$lib_id' AND `password`='$password'"); 
             $pass_verify_rows = mysqli_num_rows($pass_verify);
-            $result = mysqli_query($con,"SELECT * FROM `Library_card_index` WHERE `lib_id`=$lib_id");
+            $result = mysqli_query($con,"SELECT * FROM `Library_card_index` WHERE `lib_id`='$lib_id'");
 	    $row=mysqli_fetch_assoc($result);
-	    $result2 = mysqli_query($con,"SELECT * FROM `Students` WHERE `lib_id`=$lib_id");
+	    $result2 = mysqli_query($con,"SELECT * FROM `Students` WHERE `lib_id`='$lib_id'");
             $row2 = mysqli_fetch_assoc($result2);
             $currentTimestamp = time();
-            $newTimestamp = $currentTimestamp + (5 * 60 * 60) + (30 * 60);
+            $newTimestamp = $currentTimestamp + (4 * 60 * 60) + (30 * 60);
             $formattedMySQLTimestamp = date("Y-m-d H:i:s", $newTimestamp);
             //$hash=$row['password'];
             //$verify=password_verify($password,$hash);
             if($pass_verify_rows==1) {
-            $insert_entry = "INSERT INTO `Reference_section` (lib_id,name,branch,entry) VALUES ($lib_id,'{$row2['name']}','{$row2['branch']}','$formattedMySQLTimestamp')";
+            $insert_entry = "INSERT INTO `Reference_section` (lib_id,name,branch,entry) VALUES ('$lib_id','{$row2['name']}','{$row2['branch']}','$formattedMySQLTimestamp')";
             mysqli_query($con, $insert_entry);
             ?>
             <!-- SUCCESS ON ENTRY  -->
@@ -203,12 +203,12 @@
     $exit_id = $_POST['exit_id'];
     $suggestion = $_POST['suggestion'];
     $currentTimestamp = time();
-    $newTimestamp = $currentTimestamp + (5 * 60 * 60) + (30 * 60);
+    $newTimestamp = $currentTimestamp + (4 * 60 * 60) + (30 * 60);
     $formattedMySQLTimestamp = date("Y-m-d H:i:s", $newTimestamp);
-    mysqli_query($con,"UPDATE Reference_section SET SUGGESTION='$suggestion', `exit`='$formattedMySQLTimestamp' WHERE lib_id=$exit_id");
+    mysqli_query($con,"UPDATE Reference_section SET SUGGESTION='$suggestion', `exit`='$formattedMySQLTimestamp' WHERE lib_id='$exit_id'");
     // echo $exit_id;
     if($exit_id != "") {
-        $verify = mysqli_query($con,"SELECT lib_id, status FROM `Reference_section` WHERE `lib_id`=$exit_id AND `status` = 1;");
+        $verify = mysqli_query($con,"SELECT lib_id, status FROM `Reference_section` WHERE `lib_id`='$exit_id' AND `status` = 1;");
         $res = mysqli_num_rows($verify);
         // echo $res;
         if($res == 0) {
@@ -240,7 +240,7 @@
             <?php
         }
         if($res > 0) {
-            $sql = "CALL exit_reference($exit_id);";
+            $sql = "CALL exit_reference('$exit_id');";
             $query = mysqli_query($con, $sql);
             if(!$query) {
                 echo "Failed exit";
